@@ -37,6 +37,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
+    azureSubscription: 'Pay-As-You-Go(17591667-06da-42f3-9706-0469c9ec0d4d)'
     appType: 'webApp'
     WebAppName: 'helpdeskhq-security-api-dev'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
