@@ -8,6 +8,13 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HelpDeskHQ.Core\HelpDeskHQ.Core.csproj" />
+    <ProjectReference Include="..\HelpDeskHQ.Domain\HelpDeskHQ.Domain.csproj" />
   </ItemGroup>
 
 </Project>
