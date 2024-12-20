@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HelpDeskHQ.Domain.Security;
 
 namespace HelpDeskHQ.Core.Contracts
 {
-    internal class IAccountRepository
+    public interface IAccountRepository
     {
+        Account? GetByUsernamePassword(string username, string password);
     }
 }

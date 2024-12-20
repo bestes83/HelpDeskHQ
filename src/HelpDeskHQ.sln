@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35514.174 d17.12
+VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDeskHQ.Core", "HelpDeskHQ.Core\HelpDeskHQ.Core.csproj", "{B4C2EE00-2E17-4407-BA94-F8E4A40F2F3B}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDeskHQ.Persistence", "HelpDeskHQ.Persistence\HelpDeskHQ.Persistence.csproj", "{9D5082C3-8A0D-402E-A19D-57480DF34042}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDeskHQ.SecurityTests", "HelpDeskHQ.SecurityTests\HelpDeskHQ.SecurityTests.csproj", "{0A174022-4C7B-42F0-B216-1B8AB6ADCA50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDeskHQ.Domain", "HelpDeskHQ.Domain\HelpDeskHQ.Domain.csproj", "{C629A787-5983-40D5-AB8F-EF7CF5E65941}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{0A174022-4C7B-42F0-B216-1B8AB6ADCA50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A174022-4C7B-42F0-B216-1B8AB6ADCA50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A174022-4C7B-42F0-B216-1B8AB6ADCA50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C629A787-5983-40D5-AB8F-EF7CF5E65941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C629A787-5983-40D5-AB8F-EF7CF5E65941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C629A787-5983-40D5-AB8F-EF7CF5E65941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C629A787-5983-40D5-AB8F-EF7CF5E65941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{FC0B31C3-1DB2-4431-88EC-8D1945FFD731} = {1BB8FA06-77DF-4E97-B35B-A35C81951A8B}
 		{9D5082C3-8A0D-402E-A19D-57480DF34042} = {4353BA04-6668-4F47-9FA6-EAC7B2A757E2}
 		{0A174022-4C7B-42F0-B216-1B8AB6ADCA50} = {DA50E455-ED8D-4E08-9643-A4FD55F149AE}
+		{C629A787-5983-40D5-AB8F-EF7CF5E65941} = {76191363-122E-4C29-AC1F-08C2F99D96BB}
 	EndGlobalSection
 EndGlobal
