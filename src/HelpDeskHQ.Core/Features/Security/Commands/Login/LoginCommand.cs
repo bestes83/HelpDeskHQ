@@ -2,7 +2,7 @@
 using HelpDeskHQ.Core.Models;
 using MediatR;
 
-namespace HelpDeskHQ.Core.Features.Security.Commands
+namespace HelpDeskHQ.Core.Features.Security.Commands.Login
 {
     public class LoginCommand : IRequest<Response<AccountVm>>
     {

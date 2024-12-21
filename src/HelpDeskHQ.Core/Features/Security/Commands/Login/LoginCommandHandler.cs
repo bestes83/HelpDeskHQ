@@ -5,9 +5,9 @@ using HelpDeskHQ.Core.Models;
 using HelpDeskHQ.Domain.Security;
 using MediatR;
 
-namespace HelpDeskHQ.Core.Features.Security.Commands
+namespace HelpDeskHQ.Core.Features.Security.Commands.Login
 {
-    public class LoginCommandHandler: IRequestHandler<LoginCommand, Response<AccountVm>>
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, Response<AccountVm>>
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IMapper _mapper;

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using HelpDeskHQ.Core.Contracts;
-using HelpDeskHQ.Core.Features.Security.Commands;
+using HelpDeskHQ.Core.Features.Security.Commands.Login;
 using HelpDeskHQ.Core.Models;
 using HelpDeskHQ.Domain.Security;
 using NSubstitute;

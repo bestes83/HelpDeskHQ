@@ -11,6 +11,8 @@ namespace HelpDeskHQ.Security
         public static IEndpointRouteBuilder MapV1Endpoints(this IEndpointRouteBuilder app)
         {
             app.MapPost("/login", Login);
+            app.MapPost("/account", CreateAccount);
+
             return app;
         }
 
@@ -18,5 +20,7 @@ namespace HelpDeskHQ.Security
         {
             return await mediator.Send(loginCommand);
         }
+
+        private static async Task<Response<object>> CreateAccount([AsParameters] IMediator mediator){}
     }
 }
