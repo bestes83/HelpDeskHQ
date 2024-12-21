@@ -1,4 +1,4 @@
-﻿using HelpDeskHQ.Core.Features.Security.Commands;
+﻿using HelpDeskHQ.Core.Features.Security.Commands.Login;
 using HelpDeskHQ.Core.Helpers;
 using HelpDeskHQ.Core.Models;
 using MediatR;
