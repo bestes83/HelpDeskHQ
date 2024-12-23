@@ -1,11 +1,9 @@
-﻿using System.Runtime.InteropServices;
+﻿using Dapper;
 using HelpDeskHQ.Core.Contracts;
 using HelpDeskHQ.Domain.Security;
-using Dapper;
 using Microsoft.Data.SqlClient;
 
-
-namespace HelpDeskHQ.Persistence.DaperImp
+namespace HelpDeskHQ.Persistence.DapperImp
 {
     public class AccountRepository : IAccountRepository
     {

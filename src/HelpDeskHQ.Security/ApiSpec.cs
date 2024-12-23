@@ -1,4 +1,5 @@
-﻿using HelpDeskHQ.Core.Features.Security.Commands.Login;
+﻿using HelpDeskHQ.Core.Features.Security.Commands.CreateAccount;
+using HelpDeskHQ.Core.Features.Security.Commands.Login;
 using HelpDeskHQ.Core.Helpers;
 using HelpDeskHQ.Core.Models;
 using MediatR;
@@ -21,6 +22,9 @@ namespace HelpDeskHQ.Security
             return await mediator.Send(loginCommand);
         }
 
-        private static async Task<Response<object>> CreateAccount([AsParameters] IMediator mediator){}
+        private static async Task<Response<object>> CreateAccount([AsParameters] IMediator mediator, [FromBody] CreateAccountCommand createAccountCommand)
+        {
+            return await mediator.Send(createAccountCommand);
+        }
     }
 }
