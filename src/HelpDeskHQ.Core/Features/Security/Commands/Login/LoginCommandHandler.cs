@@ -21,7 +21,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
         public async Task<Response<AccountVm>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             var response = new Response<AccountVm>();
-            var account = _accountRepository.GetByUsername(request.Username, request.Password);
+            var account = _accountRepository.GetByUsernamePassword(request.Username, request.Password);
 
             if (account == null)
             {

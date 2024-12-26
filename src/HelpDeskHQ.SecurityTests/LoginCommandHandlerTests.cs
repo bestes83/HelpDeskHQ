@@ -28,7 +28,7 @@ public class LoginCommandHandlerTests
         Account account = new() { Username = "testuser", Password = "password" };
         AccountVm accountVm = new() { Username = "testuser" };
 
-        _accountRepository.GetByUsername(request.Username, request.Password).Returns(account);
+        _accountRepository.GetByUsernamePassword(request.Username, request.Password).Returns(account);
         _mapper.Map<AccountVm>(account).Returns(accountVm);
 
         // Act
@@ -49,7 +49,7 @@ public class LoginCommandHandlerTests
         Account account = null;
         AccountVm accountVm = new() { Username = "testuser" };
 
-        _accountRepository.GetByUsername(request.Username, request.Password).Returns(account);
+        _accountRepository.GetByUsernamePassword(request.Username, request.Password).Returns(account);
         _mapper.Map<AccountVm>(account).Returns(accountVm);
 
         // Act
