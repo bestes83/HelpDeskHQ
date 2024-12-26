@@ -1,4 +1,5 @@
 using HelpDeskHQ.Core;
+using HelpDeskHQ.Infrastructure;
 using HelpDeskHQ.Persistence;
 using HelpDeskHQ.Security;
 
@@ -8,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 //builder.Services.AddOpenApi();
 builder.Services
+    .RegisterInfrastructure()
     .RegisterDataLayer()
     .RegisterServices();
 

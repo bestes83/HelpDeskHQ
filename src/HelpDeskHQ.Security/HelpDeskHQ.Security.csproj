@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HelpDeskHQ.Core\HelpDeskHQ.Core.csproj" />
+    <ProjectReference Include="..\HelpDeskHQ.Infrastructure\HelpDeskHQ.Infrastructure.csproj" />
     <ProjectReference Include="..\HelpDeskHQ.Persistence\HelpDeskHQ.Persistence.csproj" />
   </ItemGroup>
 
