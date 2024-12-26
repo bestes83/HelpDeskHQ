@@ -4,7 +4,13 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationInsightsResourceId>/subscriptions/17591667-06da-42f3-9706-0469c9ec0d4d/resourceGroups/HelpDeskHQ/providers/microsoft.insights/components/helpdeskhq-api-dev</ApplicationInsightsResourceId>
+    <UserSecretsId>48e15594-3bbd-4494-a4bb-dcdc2f67ee13</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HelpDeskHQ.Core\HelpDeskHQ.Core.csproj" />

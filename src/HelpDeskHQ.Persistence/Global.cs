@@ -1,6 +1,6 @@
-﻿using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
-using HelpDeskHQ.Core.Contracts;
+﻿global using Dapper;
+global using HelpDeskHQ.Core.Contracts;
+
 using HelpDeskHQ.Persistence.DapperImp;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,8 +10,6 @@ namespace HelpDeskHQ.Persistence
     {
         public static IServiceCollection RegisterDataLayer(this IServiceCollection services)
         {
-            
-
             services.AddScoped<IAccountRepository, AccountRepository>();
 
             return services;

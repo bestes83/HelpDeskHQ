@@ -2,6 +2,7 @@ using HelpDeskHQ.Core;
 using HelpDeskHQ.Infrastructure;
 using HelpDeskHQ.Persistence;
 using HelpDeskHQ.Security;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,15 @@ builder.Services
     .RegisterInfrastructure()
     .RegisterDataLayer()
     .RegisterServices();
+builder.Services.Configure<Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration>(config =>
+{
+config.SetAzureTokenCredential(new DefaultAzureCredential());
+});
+
+builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
+{
+    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
+});
 
 var app = builder.Build();
 

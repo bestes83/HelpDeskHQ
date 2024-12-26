@@ -1,7 +1,4 @@
-﻿using Dapper;
-using HelpDeskHQ.Core.Contracts;
-using HelpDeskHQ.Domain.Security;
-using Microsoft.Data.SqlClient;
+﻿using HelpDeskHQ.Domain.Security;
 
 namespace HelpDeskHQ.Persistence.DapperImp
 {
