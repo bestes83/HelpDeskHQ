@@ -1,6 +1,6 @@
 ﻿namespace HelpDeskHQ.Core.Contracts
 {
-    public interface ISecreteService
+    public interface ISecretService
     {
         string GetConnectionString();
     }

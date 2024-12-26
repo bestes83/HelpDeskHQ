@@ -1,14 +1,17 @@
 ﻿using HelpDeskHQ.Core.Contracts;
 using HelpDeskHQ.Infrastructure.KeyVault;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 namespace HelpDeskHQ.Infrastructure
 {
     public static class Global
     {
-        public static IServiceCollection RegisterInfrastructure(this IServiceCollection services)
+        public static IServiceCollection RegisterInfrastructure(this IServiceCollection services, IConfigurationManager config)
         {
-            services.AddSingleton<ISecreteService, SecreteService>();
+            //services.AddSingleton<ISecretService, SecretService>();
+            var keyVaultUrl = config.GetSection("AzureKeyVault")["KeyVaultUrl"];
+            services.AddSingleton<ISecretService>(x => new SecretService(keyVaultUrl));
             return services;
         }
     }

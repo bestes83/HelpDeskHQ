@@ -7,16 +7,16 @@ namespace HelpDeskHQ.Persistence.DapperImp
 {
     public class BaseRepository
     {
-        private readonly ISecreteService _secreteService;
+        private readonly ISecretService _secretService;
 
-        public BaseRepository(ISecreteService secreteService)
+        public BaseRepository(ISecretService secretService)
         {
-            _secreteService = secreteService;
+            _secretService = secretService;
         }
 
         public virtual IDbConnection GetConnection()
         {
-            var connectionString = _secreteService.GetConnectionString();
+            var connectionString = _secretService.GetConnectionString();
             var dbConnection = new SqlConnection(connectionString);
             return dbConnection;
         }
