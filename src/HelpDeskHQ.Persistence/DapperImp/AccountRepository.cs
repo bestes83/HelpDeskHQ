@@ -4,7 +4,7 @@ namespace HelpDeskHQ.Persistence.DapperImp
 {
     public class AccountRepository : BaseRepository, IAccountRepository
     {
-        public AccountRepository(ISecreteService secreteService): base(secreteService) { }
+        public AccountRepository(ISecretService secretService): base(secretService) { }
 
         public Account? GetByUsernamePassword(string username, string password)
         {
@@ -17,10 +17,11 @@ namespace HelpDeskHQ.Persistence.DapperImp
             }
         }
 
-        public async void Create(Account account)
+        public async Task Create(Account account)
         {
             var sql =
                 "INSERT INTO Accounts (AccountId, Username, Password, Salt) VALUES (@AccountId, @Username, @Password, @Salt)";
+
             using (var connection = GetConnection())
             {
                 await connection.ExecuteAsync(sql, account);

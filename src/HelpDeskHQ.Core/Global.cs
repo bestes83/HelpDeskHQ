@@ -1,4 +1,5 @@
-﻿
+﻿global using HelpDeskHQ.Domain.Security;
+global using HelpDeskHQ.Core.Validators;
 
 using Microsoft.Extensions.DependencyInjection;
 

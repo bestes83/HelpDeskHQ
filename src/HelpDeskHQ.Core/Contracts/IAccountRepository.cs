@@ -5,6 +5,6 @@ namespace HelpDeskHQ.Core.Contracts
     public interface IAccountRepository
     {
         Account? GetByUsernamePassword(string username, string password);
-        void Create(Account account);
+        Task Create(Account account);
     }
 }
