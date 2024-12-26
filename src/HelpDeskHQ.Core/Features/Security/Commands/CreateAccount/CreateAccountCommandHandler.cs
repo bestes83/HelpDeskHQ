@@ -26,7 +26,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.CreateAccount
                 Salt = salt,
             };
 
-            _accountRepository
+            await _accountRepository.Create(account);
 
             return new Response<object>();
         }
