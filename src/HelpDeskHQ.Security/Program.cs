@@ -12,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .RegisterInfrastructure(builder.Configuration)
     .RegisterDataLayer()
-    .RegisterServices();
+    .RegisterServices()
+    .AddSwaggerGen();
+
 builder.Services.Configure<Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration>(config =>
 {
 config.SetAzureTokenCredential(new DefaultAzureCredential());
@@ -29,8 +31,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
   //  app.MapOpenApi();
+  app.MapSwagger();
+  app.UseSwaggerUI();
 }
 
-//app.MapV1Endpoints();
+app.MapV1Endpoints();
 
 app.Run();
