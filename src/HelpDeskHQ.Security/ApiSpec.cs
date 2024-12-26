@@ -12,7 +12,7 @@ namespace HelpDeskHQ.Security
         public static IEndpointRouteBuilder MapV1Endpoints(this IEndpointRouteBuilder app)
         {
             app.MapPost("/login", Login);
-            app.MapPost("/account", CreateAccount);
+            app.MapPost("/create-account", CreateAccount);
 
             return app;
         }

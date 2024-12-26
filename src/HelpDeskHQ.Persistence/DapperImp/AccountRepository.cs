@@ -16,5 +16,15 @@ namespace HelpDeskHQ.Persistence.DapperImp
                 return account;
             }
         }
+
+        public async void Create(Account account)
+        {
+            var sql =
+                "INSERT INTO Accounts (AccountId, Username, Password, Salt) VALUES (@AccountId, @Username, @Password, @Salt)";
+            using (var connection = GetConnection())
+            {
+                await connection.ExecuteAsync(sql, account);
+            }
+        }
     }
 }

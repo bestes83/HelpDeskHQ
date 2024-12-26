@@ -10,5 +10,8 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.CreateAccount
 {
     public class CreateAccountCommand : IRequest<Response<object>>
     {
+        public string Username { get; set; }
+        public string Password { get; set; }
+        
     }
 }
