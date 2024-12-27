@@ -8,7 +8,7 @@ namespace HelpDeskHQ.Persistence.DapperImp
 
         public Account? GetByUsernamePassword(string username, string password)
         {
-            var sql = "SELECT AccountId, Username FROM Account WHERE Username=@Username && Password=@Password";
+            var sql = "SELECT AccountId, Username FROM Account WHERE Username=@Username";
 
             using (var connection = GetConnection())
             {

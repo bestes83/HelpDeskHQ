@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HelpDeskHQ.Core.Contracts;
+using HelpDeskHQ.Core.Extensions;
 using HelpDeskHQ.Core.Helpers;
 using HelpDeskHQ.Core.Models;
 using HelpDeskHQ.Domain.Security;
@@ -25,6 +26,8 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
 
         public async Task<Response<AccountVm>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
+            var failedLoginMessage = "Username and password do not match.";
+
             var response = new Response<AccountVm>();
             try
             {
@@ -32,11 +35,17 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
 
                 if (account == null)
                 {
-                    response.Message = "Username and password do not match.";
+                    response.Message = failedLoginMessage;
                     return response;
                 }
 
-                var providedPassword = $"{request.Password}{account.Salt}";
+                var providedPassword = $"{request.Password}{account.Salt}".ComputeHash();
+
+                if (account.Password != providedPassword)
+                {
+                    response.Success = false;
+                    response.Message = failedLoginMessage;
+                }
 
                 var vm = _mapper.Map<AccountVm>(account);
                 response.Success = true;
