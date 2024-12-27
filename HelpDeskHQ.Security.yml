@@ -21,9 +21,13 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
-    restoreSolution: '$(solution)'
+    azureSubscription: 'Pay-As-You-Go(17591667-06da-42f3-9706-0469c9ec0d4d)'
+    command: 'restore'
+    projects: '$(project)'
+    feedsToUse: 'select'
+
 
 - task: DotNetCoreCLI@2
   inputs:
