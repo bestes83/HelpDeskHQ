@@ -20,7 +20,7 @@ namespace HelpDeskHQ.Persistence.DapperImp
         public async Task Create(Account account)
         {
             var sql =
-                "INSERT INTO Accounts (AccountId, Username, Password, Salt) VALUES (@AccountId, @Username, @Password, @Salt)";
+                "INSERT INTO Account (AccountId, Username, Password, Salt) VALUES (@AccountId, @Username, @Password, @Salt)";
 
             using (var connection = GetConnection())
             {
