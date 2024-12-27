@@ -8,10 +8,10 @@ namespace HelpDeskHQ.Infrastructure.KeyVault
     public class SecretService : ISecretService
     {
         //private static string? _connectionString;
-        private string _keyVaultUrl = string.Empty;
-        private readonly SecretClient _secretClient;
+        private string _keyVaultUrl;
+        //private readonly SecretClient _secretClient;
 
-        private static string? _connectionString;
+        private static string _connectionString;
 
         public SecretService(string keyVaultUrl)
         {
@@ -31,10 +31,10 @@ namespace HelpDeskHQ.Infrastructure.KeyVault
             return _connectionString;
         }
 
-        private string GetAzureSecret(string key)
-        {
-            var secret = _secretClient.GetSecret(key);
-            return secret.Value.Value;
-        }
+        //private string GetAzureSecret(string key)
+        //{
+        //    var secret = _secretClient.GetSecret(key);
+        //    return secret.Value.Value;
+        //}
     }
 }
