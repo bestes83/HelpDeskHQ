@@ -38,14 +38,14 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.CreateAccount
                 }
 
                 var salt = CreateSalt();
-                //var account = new Account()
-                //{
-                //    Username = request.Username,
-                //    Password = CreateHash($"{request.Password}{salt}"),
-                //    Salt = salt,
-                //};
+                var account = new Account()
+                {
+                    Username = request.Username,
+                    Password = CreateHash($"{request.Password}{salt}"),
+                    Salt = salt,
+                };
 
-                //await _accountRepository.Create(account);
+                await _accountRepository.Create(account);
             }
             catch (Exception ex)
             {
