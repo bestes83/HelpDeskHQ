@@ -18,29 +18,29 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.CreateAccount
 
         public async Task<Response<object>> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateAccountValidator();
-            var result = await validator.ValidateAsync(request, cancellationToken);
+            //var validator = new CreateAccountValidator();
+            //var result = await validator.ValidateAsync(request, cancellationToken);
 
-            if (!result.IsValid)
-            {
-                var response = new Response<object>()
-                {
-                    Success = false,
-                    Message = result.ToString("*"),
-                };
-                return response;
-                //var temp = result.Errors.Select(x => x.ErrorMessage);
-            }
+            //if (!result.IsValid)
+            //{
+            //    var response = new Response<object>()
+            //    {
+            //        Success = false,
+            //        Message = result.ToString("*"),
+            //    };
+            //    return response;
+            //    //var temp = result.Errors.Select(x => x.ErrorMessage);
+            //}
 
-            var salt = CreateSalt();
-            var account = new Account()
-            {
-                Username = request.Username,
-                Password = CreateHash($"{request.Password}{salt}"),
-                Salt = salt,
-            };
+            //var salt = CreateSalt();
+            //var account = new Account()
+            //{
+            //    Username = request.Username,
+            //    Password = CreateHash($"{request.Password}{salt}"),
+            //    Salt = salt,
+            //};
 
-            await _accountRepository.Create(account);
+            //await _accountRepository.Create(account);
 
             return new Response<object>(){Success = true};
         }
