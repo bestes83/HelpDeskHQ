@@ -26,6 +26,12 @@ builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsigh
     ConnectionString = "InstrumentationKey=25edfd7c-07b7-4f8b-8cde-6ac4e09ced89;IngestionEndpoint=https://southcentralus-3.in.applicationinsights.azure.com/;LiveEndpoint=https://southcentralus.livediagnostics.monitor.azure.com/;ApplicationId=3eac1e8d-9291-4783-bd78-a6754c631ef6"
 });
 
+builder.Logging
+    .ClearProviders()
+    .AddApplicationInsights()
+    .AddConsole()
+    .AddDebug();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
