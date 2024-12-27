@@ -13,6 +13,7 @@ variables:
   sourceDir: '$(System.DefaultWorkingDirectory)/src'
   solution: '**/*.sln'
   project: '**/HelpDeskHQ.Security.csproj'
+  tests: '**/HelpDeskHQ.SecurityTests.csproj'
   buildPlatform: 'Any CPU'
   #buildConfiguration: 'Release'
   buildConfiguration: 'Debug'
@@ -24,12 +25,11 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(project)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    azureSubscription: 'Pay-As-You-Go(17591667-06da-42f3-9706-0469c9ec0d4d)'
+    command: 'build'
+    projects: '$(tests)'
 
 - task: VSTest@2
   inputs:
@@ -48,6 +48,13 @@ steps:
       Write-Host "Hello World"
       
       ls $(sourceDir)/HelpDeskHQ.SecurityTests
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(project)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
 
 - task: AzureRmWebAppDeployment@4
   inputs:
