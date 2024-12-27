@@ -22,6 +22,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
         {
             _accountRepository = accountRepository;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<Response<AccountVm>> Handle(LoginCommand request, CancellationToken cancellationToken)
