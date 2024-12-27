@@ -42,7 +42,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.CreateAccount
 
             await _accountRepository.Create(account);
 
-            return new Response<object>();
+            return new Response<object>(){Success = true};
         }
 
         private string CreateSalt()
