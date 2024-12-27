@@ -10,7 +10,11 @@ namespace HelpDeskHQ.Infrastructure
         public static IServiceCollection RegisterInfrastructure(this IServiceCollection services, IConfigurationManager config)
         {
             //services.AddSingleton<ISecretService, SecretService>();
-            var keyVaultUrl = config.GetSection("AzureKeyVault")["KeyVaultUrl"];
+            var keyVaultUrl = config.GetSection("AzureKeyVault")["KeyVaultUrl"] ?? String.Empty;
+
+            if(string.IsNullOrEmpty(keyVaultUrl))
+                throw new ArgumentNullException("KeyVaultUrl is not configured.", nameof(keyVaultUrl));
+
             services.AddSingleton<ISecretService>(x => new SecretService(keyVaultUrl));
             return services;
         }
