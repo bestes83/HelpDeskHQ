@@ -3,6 +3,7 @@ using HelpDeskHQ.Core.Contracts;
 using HelpDeskHQ.Core.Features.Security.Commands.Login;
 using HelpDeskHQ.Core.Models;
 using HelpDeskHQ.Domain.Security;
+using Microsoft.Extensions.Logging;
 using NSubstitute;
 
 [TestClass]
@@ -10,14 +11,17 @@ public class LoginCommandHandlerTests
 {
     private IAccountRepository _accountRepository;
     private IMapper _mapper;
+    private ILogger<LoginCommand> _logger;
     private LoginCommandHandler _handler;
 
     [TestInitialize]
     public void Setup()
     {
         _accountRepository = Substitute.For<IAccountRepository>();
+        _logger = Substitute.For<ILogger<LoginCommand>>();
         _mapper = Substitute.For<IMapper>();
-        _handler = new LoginCommandHandler(_accountRepository, _mapper);
+
+        _handler = new LoginCommandHandler(_accountRepository, _mapper, _logger);
     }
 
     [TestMethod]
