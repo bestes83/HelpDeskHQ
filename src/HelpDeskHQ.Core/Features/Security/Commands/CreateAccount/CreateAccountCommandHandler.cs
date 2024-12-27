@@ -34,7 +34,6 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.CreateAccount
                         Message = result.ToString("*"),
                     };
                     return response;
-                    //var temp = result.Errors.Select(x => x.ErrorMessage);
                 }
 
                 var salt = CreateSalt();
