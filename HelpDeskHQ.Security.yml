@@ -10,6 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
+  sourceDir: '$(System.DefaultWorkingDirectory)/src'
   solution: '**/*.sln'
   project: '**/HelpDeskHQ.Security.csproj'
   buildPlatform: 'Any CPU'
@@ -33,8 +34,8 @@ steps:
 - task: VSTest@2
   inputs:
     testSelector: 'testAssemblies'
-    testAssemblyVer2: '**\bin\**\**\*tests.dll'
-    searchFolder: '$(System.DefaultWorkingDirectory)'
+    testAssemblyVer2: '**\bin\**\*tests.dll'
+    searchFolder: '$(sourceDir)/HelpDeskHQ.SecurityTests'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
@@ -46,7 +47,7 @@ steps:
       
       Write-Host "Hello World"
       
-      ls $(System.DefaultWorkingDirectory)
+      ls $(sourceDir)/HelpDeskHQ.SecurityTests
 
 - task: AzureRmWebAppDeployment@4
   inputs:
