@@ -4,7 +4,7 @@ IF OBJECT_ID('Account') IS NOT NULL
 CREATE TABLE Account
 (
 	AccountId INT,
-	Username INT,
+	Username NVARCHAR(100),
 	[Password] NVARCHAR(100),
 	[Salt] NVARCHAR(25)
 )
