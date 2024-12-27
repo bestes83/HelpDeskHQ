@@ -17,17 +17,17 @@ namespace HelpDeskHQ.Infrastructure.KeyVault
         {
             _keyVaultUrl = keyVaultUrl;
 
-            var keyVaultUri = new Uri(_keyVaultUrl);
-            var credential = new DefaultAzureCredential();
+            //var keyVaultUri = new Uri(_keyVaultUrl);
+            //var credential = new DefaultAzureCredential();
 
-            _secretClient = new SecretClient(keyVaultUri, credential);
+            //_secretClient = new SecretClient(keyVaultUri, credential);
         }
 
         public string GetConnectionString()
         {
-            if(string.IsNullOrEmpty(_connectionString))
-                return GetAzureSecret("helpdeskhq-dev-connectionstring");
-            
+            //if(string.IsNullOrEmpty(_connectionString))
+            //    return GetAzureSecret("helpdeskhq-dev-connectionstring");
+            _connectionString = Environment.GetEnvironmentVariable("ConnectionString");
             return _connectionString;
         }
 
