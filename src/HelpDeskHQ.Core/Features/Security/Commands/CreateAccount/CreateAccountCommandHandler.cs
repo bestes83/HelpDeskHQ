@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace HelpDeskHQ.Core.Features.Security.Commands.CreateAccount
 {
-    internal class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, Response<object>>
+    public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, Response<object>>
     {
         private readonly IAccountRepository _accountRepository;
         private readonly ILogger<CreateAccountCommand> _logger;

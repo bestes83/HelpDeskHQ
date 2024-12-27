@@ -43,10 +43,11 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
 
                 var providedPassword = $"{request.Password}{account.Salt}".ComputeHash();
 
-                if (account.Password != providedPassword)
+                if(!providedPassword.Equals(account.Password))
                 {
                     response.Success = false;
                     response.Message = failedLoginMessage;
+                    return response;
                 }
 
                 var vm = _mapper.Map<AccountVm>(account);

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics;
+using AutoMapper;
 using HelpDeskHQ.Core.Contracts;
 using HelpDeskHQ.Core.Features.Security.Commands.Login;
 using HelpDeskHQ.Core.Models;
@@ -22,6 +23,7 @@ public class LoginCommandHandlerTests
         _mapper = Substitute.For<IMapper>();
 
         _handler = new LoginCommandHandler(_accountRepository, _mapper, _logger);
+        Debugger.Launch();
     }
 
     [TestMethod]
@@ -29,8 +31,8 @@ public class LoginCommandHandlerTests
     {
         // Arrange
         LoginCommand request = new() { Username = "testuser", Password = "password" };
-        Account account = new() { Username = "testuser", Password = "password" };
-        AccountVm accountVm = new() { Username = "testuser" };
+        Account account = new() { AccountId = 1, Username = "testuser", Password = "password" };
+        AccountVm accountVm = new() { AccountId = 1, Username = "testuser" };
 
         _accountRepository.GetByUsernamePassword(request.Username, request.Password).Returns(account);
         _mapper.Map<AccountVm>(account).Returns(accountVm);
@@ -52,6 +54,25 @@ public class LoginCommandHandlerTests
         LoginCommand request = new() { Username = "testuser", Password = "password" };
         Account account = null;
         AccountVm accountVm = new() { Username = "testuser" };
+
+        _accountRepository.GetByUsernamePassword(request.Username, request.Password).Returns(account);
+        _mapper.Map<AccountVm>(account).Returns(accountVm);
+
+        // Act
+        var result = await _handler.Handle(request, CancellationToken.None);
+
+        // Assert
+        Assert.IsNotNull(result);
+        Assert.IsFalse(result.Success);
+    }
+
+    [TestMethod]
+    public async Task Handle_ShouldReturnFailResponse_WhenPasswordsDoNotMatch()
+    {
+        // Arrange
+        LoginCommand request = new() { Username = "testuser", Password = "password" };
+        Account account = new() { Username = "testuser", Password = "1232322", Salt = "1234"};
+        AccountVm accountVm = new() { Username = "testuser",};
 
         _accountRepository.GetByUsernamePassword(request.Username, request.Password).Returns(account);
         _mapper.Map<AccountVm>(account).Returns(accountVm);
