@@ -32,6 +32,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
             var response = new Response<AccountVm>();
             try
             {
+                await Task.Run(() => { });//this needs to be replaced with a real await.
                 var account = _accountRepository.GetByUsernamePassword(request.Username, request.Password);
 
                 if (account == null)
@@ -54,7 +55,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error logging in.", request);
+                _logger.LogError(ex, "Error logging in.");
             }
 
             return response;

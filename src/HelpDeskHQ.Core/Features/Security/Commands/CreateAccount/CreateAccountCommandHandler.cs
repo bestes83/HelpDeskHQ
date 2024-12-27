@@ -49,7 +49,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.CreateAccount
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error creating account.", request);
+                _logger.LogError(ex, "Error creating account.");
                 return new Response<object>() {Success = false, Message = ex.Message};
             }
 
