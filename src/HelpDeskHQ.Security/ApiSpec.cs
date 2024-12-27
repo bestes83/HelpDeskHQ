@@ -17,12 +17,12 @@ namespace HelpDeskHQ.Security
             return app;
         }
 
-        private static async Task<Response<AccountVm>> Login([AsParameters] IMediator mediator, [FromBody] LoginCommand loginCommand)
+        private static async Task<Response<AccountVm>> Login(IMediator mediator, [FromBody] LoginCommand loginCommand)
         {
             return await mediator.Send(loginCommand);
         }
 
-        private static async Task<Response<object>> CreateAccount([AsParameters] IMediator mediator, [FromBody] CreateAccountCommand createAccountCommand)
+        private static async Task<Response<object>> CreateAccount(IMediator mediator, [FromBody] CreateAccountCommand createAccountCommand)
         {
             return await mediator.Send(createAccountCommand);
         }
