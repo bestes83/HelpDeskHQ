@@ -16,7 +16,7 @@ namespace HelpDeskHQ.Infrastructure
             if(string.IsNullOrEmpty(keyVaultUrl))
                 throw new ArgumentNullException("KeyVaultUrl is not configured.", nameof(keyVaultUrl));
 
-            services.AddSingleton<ISecretService>(x => new SecretService(keyVaultUrl, x.GetService<ILogger<SecretService>>()));
+            services.AddSingleton<ISecretService>(x => new SecretService(keyVaultUrl, x.GetService<ILogger<SecretService>>(), config));
             return services;
         }
     }
