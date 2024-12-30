@@ -12,7 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .RegisterInfrastructure(builder.Configuration)
     .RegisterDataLayer()
-    .RegisterServices()
+    .RegisterServices();
+
+builder.Services
+    //.AddEndpointsApiExplorer()
     .AddSwaggerGen();
 
 builder.Services.Configure<Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration>(config =>

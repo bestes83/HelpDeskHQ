@@ -13,7 +13,7 @@ namespace HelpDeskHQ.Security
         {
             app.MapPost("/login", Login);
             app.MapPost("/create-account", CreateAccount);
-            app.MapGet("/test", () => new {Message = "test is working."});
+            app.MapGet("/test", () => new Response{Message = "test is working."});
 
             return app;
         }
