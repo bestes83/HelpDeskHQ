@@ -56,7 +56,7 @@ public class CreateAccountCommandHandlerTests
 
         // Assert
         Assert.IsFalse(response.Success);
-        StringAssert.Contains(response.Message, "Validation failed");
+        StringAssert.Contains(response.Message, "Username' must not be empty.");
         await _mockAccountRepository.DidNotReceive().Create(Arg.Any<Account>());
     }
 
