@@ -23,7 +23,7 @@ public class LoginCommandHandlerTests
         _mapper = Substitute.For<IMapper>();
 
         _handler = new LoginCommandHandler(_accountRepository, _mapper, _logger);
-        Debugger.Launch();
+        //Debugger.Launch();
     }
 
     [TestMethod]
@@ -31,7 +31,7 @@ public class LoginCommandHandlerTests
     {
         // Arrange
         LoginCommand request = new() { Username = "testuser", Password = "password" };
-        Account account = new() { AccountId = 1, Username = "testuser", Password = "password" };
+        Account account = new() { AccountId = 1, Username = "testuser", Password = "vch7nIlNpRaAWeAOv/uQdw==", Salt="1234" };
         AccountVm accountVm = new() { AccountId = 1, Username = "testuser" };
 
         _accountRepository.GetByUsernamePassword(request.Username, request.Password).Returns(account);
