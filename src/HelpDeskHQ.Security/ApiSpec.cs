@@ -3,6 +3,7 @@ using HelpDeskHQ.Core.Features.Security.Commands.Login;
 using HelpDeskHQ.Core.Helpers;
 using HelpDeskHQ.Core.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HelpDeskHQ.Security
@@ -11,7 +12,8 @@ namespace HelpDeskHQ.Security
     {
         public static IEndpointRouteBuilder MapV1Endpoints(this IEndpointRouteBuilder app)
         {
-            app.MapPost("/login", Login);
+            //app.MapPost("/login", [AllowAnonymous] () => Login);
+            app.MapPost("/login", () => Login).AllowAnonymous();
             app.MapPost("/create-account", CreateAccount);
             app.MapGet("/test", () => new Response{Message = "test is working."});
 

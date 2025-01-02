@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services
     .RegisterInfrastructure(builder.Configuration)
     .RegisterDataLayer()
-    .RegisterServices();
+    .RegisterServices(builder.Configuration);
 
 builder.Services
     //.AddEndpointsApiExplorer()
