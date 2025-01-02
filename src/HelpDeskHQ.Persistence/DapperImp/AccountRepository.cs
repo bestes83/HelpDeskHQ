@@ -6,13 +6,14 @@ namespace HelpDeskHQ.Persistence.DapperImp
     {
         public AccountRepository(ISecretService secretService): base(secretService) { }
 
-        public Account? GetByUsernamePassword(string username, string password)
+        public async Task<Account?> GetByUsernamePassword(string username, string password)
         {
             var sql = "SELECT AccountId, Username FROM Account WHERE Username=@Username";
 
             using (var connection = GetConnection())
             {
-                var account = connection.QuerySingleOrDefault<Account>(sql, new {Username = username, Password = password});
+                
+                var account = await connection.QuerySingleOrDefaultAsync<Account>(sql, new {Username = username, Password = password});
                 return account;
             }
         }

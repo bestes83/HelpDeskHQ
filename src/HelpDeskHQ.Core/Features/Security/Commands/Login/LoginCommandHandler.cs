@@ -32,8 +32,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
             var response = new Response<AccountVm>();
             try
             {
-                await Task.Run(() => { });//this needs to be replaced with a real await.
-                var account = _accountRepository.GetByUsernamePassword(request.Username, request.Password);
+                var account = await _accountRepository.GetByUsernamePassword(request.Username, request.Password);
 
                 if (account == null)
                 {
