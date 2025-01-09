@@ -8,12 +8,12 @@ namespace HelpDeskHQ.Persistence.DapperImp
 
         public async Task<Account?> GetByUsernamePassword(string username, string password)
         {
-            var sql = "SELECT AccountId, Username FROM Account WHERE Username=@Username";
+            var sql = "SELECT AccountId, Username, Password, Salt FROM Account WHERE Username=@Username";
 
             using (var connection = GetConnection())
             {
                 
-                var account = await connection.QuerySingleOrDefaultAsync<Account>(sql, new {Username = username, Password = password});
+                var account = await connection.QuerySingleOrDefaultAsync<Account>(sql, new {Username = username});
                 return account;
             }
         }

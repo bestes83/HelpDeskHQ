@@ -1,4 +1,4 @@
-﻿namespace HelpDeskHQ.Core.Helpers.Config
+﻿namespace HelpDeskHQ.Tickets.Config
 {
     public class Jwt
     {

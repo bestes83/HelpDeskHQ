@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDeskHQ.Domain", "HelpDe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDeskHQ.Infrastructure", "HelpDeskHQ.Infrastructure\HelpDeskHQ.Infrastructure.csproj", "{91166E7E-715E-4E0B-9939-EDA62ED5AB9D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDeskHQ.Tickets", "HelpDeskHQ.Tickets\HelpDeskHQ.Tickets.csproj", "{FD0B9DE8-4084-4E54-8322-67BC6F2CF961}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{91166E7E-715E-4E0B-9939-EDA62ED5AB9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91166E7E-715E-4E0B-9939-EDA62ED5AB9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91166E7E-715E-4E0B-9939-EDA62ED5AB9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD0B9DE8-4084-4E54-8322-67BC6F2CF961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD0B9DE8-4084-4E54-8322-67BC6F2CF961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD0B9DE8-4084-4E54-8322-67BC6F2CF961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD0B9DE8-4084-4E54-8322-67BC6F2CF961}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +70,6 @@ Global
 		{0A174022-4C7B-42F0-B216-1B8AB6ADCA50} = {DA50E455-ED8D-4E08-9643-A4FD55F149AE}
 		{C629A787-5983-40D5-AB8F-EF7CF5E65941} = {76191363-122E-4C29-AC1F-08C2F99D96BB}
 		{91166E7E-715E-4E0B-9939-EDA62ED5AB9D} = {4353BA04-6668-4F47-9FA6-EAC7B2A757E2}
+		{FD0B9DE8-4084-4E54-8322-67BC6F2CF961} = {1BB8FA06-77DF-4E97-B35B-A35C81951A8B}
 	EndGlobalSection
 EndGlobal

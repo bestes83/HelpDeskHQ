@@ -1,6 +1,7 @@
 ﻿using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using HelpDeskHQ.Core.Contracts;
+using HelpDeskHQ.Core.Helpers.Config;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -42,7 +43,7 @@ namespace HelpDeskHQ.Infrastructure.KeyVault
             //if(string.IsNullOrEmpty(_connectionString))
             //    return _connectionString = GetAzureSecret("helpdeskhq-dev-connectionstring");
 
-            _connectionString = Environment.GetEnvironmentVariable("ConnectionString") ?? _config.GetConnectionString("ConnectionString");
+            _connectionString = Environment.GetEnvironmentVariable(ConfigHelper.ConnectionString) ?? _config.GetConnectionString(ConfigHelper.ConnectionString);
 
             if (string.IsNullOrEmpty(_connectionString))
                 throw new ArgumentException("Connection String is not defined.");

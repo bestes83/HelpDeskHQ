@@ -13,7 +13,7 @@ namespace HelpDeskHQ.Security
         public static IEndpointRouteBuilder MapV1Endpoints(this IEndpointRouteBuilder app)
         {
             //app.MapPost("/login", [AllowAnonymous] () => Login);
-            app.MapPost("/login", () => Login).AllowAnonymous();
+            app.MapPost("/login", Login);//.AllowAnonymous();
             app.MapPost("/create-account", CreateAccount);
             app.MapGet("/test", () => new Response{Message = "test is working."});
 

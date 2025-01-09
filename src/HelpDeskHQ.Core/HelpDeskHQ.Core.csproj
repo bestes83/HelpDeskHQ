@@ -10,7 +10,6 @@
     <Folder Include="Features\Security\Queries\" />
     <Folder Include="Features\Ticketing\Commands\" />
     <Folder Include="Features\Ticketing\Queries\" />
-    <Folder Include="MappingProfiles\" />
   </ItemGroup>
 
   <ItemGroup>

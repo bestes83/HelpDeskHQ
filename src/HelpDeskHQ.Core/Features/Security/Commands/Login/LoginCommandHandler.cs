@@ -2,10 +2,20 @@
 using HelpDeskHQ.Core.Contracts;
 using HelpDeskHQ.Core.Extensions;
 using HelpDeskHQ.Core.Helpers;
+using HelpDeskHQ.Core.Helpers.Config;
 using HelpDeskHQ.Core.Models;
 using HelpDeskHQ.Domain.Security;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Text;
+using HelpDeskHQ.Core.Features.Security.Commands.Dto;
+using HelpDeskHQ.Core.Helpers.Jwt;
+using Microsoft.Extensions.Options;
 
 namespace HelpDeskHQ.Core.Features.Security.Commands.Login
 {
@@ -14,16 +24,21 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
         private readonly IAccountRepository _accountRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<LoginCommand> _logger;
+        private readonly IConfiguration _config;
 
         public LoginCommandHandler(
-            IAccountRepository accountRepository, 
-            IMapper mapper, 
-            ILogger<LoginCommand> logger)
+            IAccountRepository accountRepository,
+            IMapper mapper,
+            ILogger<LoginCommand> logger,
+            IConfiguration config
+            )
         {
             _accountRepository = accountRepository;
             _mapper = mapper;
             _logger = logger;
+            _config = config;
         }
+
 
         public async Task<Response<AccountVm>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
@@ -42,7 +57,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
 
                 var providedPassword = $"{request.Password}{account.Salt}".ComputeHash();
 
-                if(!providedPassword.Equals(account.Password))
+                if (!providedPassword.Equals(account.Password))
                 {
                     response.Success = false;
                     response.Message = failedLoginMessage;
@@ -50,6 +65,7 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
                 }
 
                 var vm = _mapper.Map<AccountVm>(account);
+                vm.Token = GenerateToken(account);
                 response.Success = true;
                 response.Data = vm;
             }
@@ -59,6 +75,36 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
             }
 
             return response;
+        }
+
+        private Token GenerateToken(Account account)
+        {
+            var jwtConfig = _config.GetSection(ConfigHelper.JwtSection).Get<Jwt>();
+
+            var jwtIssuer = jwtConfig.Issuer;
+            var jwtAudience = jwtConfig.Audience;
+            var jwtKey = jwtConfig.SecreteKey;
+            var jwtExpireMinutes = jwtConfig.TokenExpires;
+            var tokenExpires = DateTime.UtcNow.AddMinutes(jwtExpireMinutes);
+
+            var tokenDescription = new SecurityTokenDescriptor()
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim("Id", Guid.NewGuid().ToString()),
+                    new Claim(JwtClaims.AccountId, account.AccountId.ToString())
+                }),
+                Expires = tokenExpires,
+                Issuer = jwtIssuer,
+                Audience = jwtAudience,
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtKey)), SecurityAlgorithms.HmacSha256Signature),
+            };
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenStr = tokenHandler.CreateToken(tokenDescription);
+            var stringToken = tokenHandler.WriteToken(tokenStr);
+
+            var token = new Token() { Value = stringToken, Expires = tokenExpires };
+            return token;
         }
     }
 }
