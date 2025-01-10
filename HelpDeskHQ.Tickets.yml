@@ -1,0 +1,70 @@
+# ASP.NET
+# Build and test ASP.NET projects.
+# Add steps that publish symbols, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
+
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  sourceDir: '$(System.DefaultWorkingDirectory)/src'
+  solution: '**/*.sln'
+  project: '**/HelpDeskHQ.Tickets.csproj'
+  tests: '**/HelpDeskHQ.SecurityTests.csproj'
+  buildPlatform: 'Any CPU'
+  #buildConfiguration: 'Release'
+  buildConfiguration: 'Debug'
+  webAppName: 'helpdeskhq-tickets-api-dev'
+
+steps:
+- task: NuGetToolInstaller@1
+
+- task: DotNetCoreCLI@2
+  inputs:
+    azureSubscription: 'Pay-As-You-Go(17591667-06da-42f3-9706-0469c9ec0d4d)'
+    command: 'restore'
+    projects: '$(project)'
+    feedsToUse: 'select'
+
+
+- task: DotNetCoreCLI@2
+  inputs:
+    azureSubscription: 'Pay-As-You-Go(17591667-06da-42f3-9706-0469c9ec0d4d)'
+    command: 'build'
+    projects: '$(tests)'
+
+- #task: VSTest@2
+  #inputs:
+    #testSelector: 'testAssemblies'
+    #testAssemblyVer2: '**\bin\**\*tests.dll'
+    #searchFolder: '$(sourceDir)/HelpDeskHQ.SecurityTests'
+    #platform: '$(buildPlatform)'
+    #configuration: '$(buildConfiguration)'
+
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your PowerShell commands here.
+      
+      Write-Host "Hello World"
+      
+      ls $(sourceDir)/HelpDeskHQ.SecurityTests
+
+- task: VSBuild@1
+  inputs:
+    solution: '$(project)'
+    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Pay-As-You-Go(17591667-06da-42f3-9706-0469c9ec0d4d)'
+    appType: 'webApp'
+    WebAppName: $(webAppName)
+    packageForLinux: '$(build.artifactStagingDirectory)/**/*.zip'
