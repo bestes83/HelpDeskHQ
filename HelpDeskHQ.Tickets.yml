@@ -36,7 +36,7 @@ steps:
     command: 'build'
     projects: '$(tests)'
 
-- #task: VSTest@2
+#- task: VSTest@2
   #inputs:
     #testSelector: 'testAssemblies'
     #testAssemblyVer2: '**\bin\**\*tests.dll'
