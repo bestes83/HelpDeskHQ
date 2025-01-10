@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using HelpDeskHQ.Tickets;
 using HelpDeskHQ.Tickets.Config;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,9 +63,5 @@ builder.Services.AddAuthentication(options =>
     }
 );
 
+app.MapV1Endpoints();
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
