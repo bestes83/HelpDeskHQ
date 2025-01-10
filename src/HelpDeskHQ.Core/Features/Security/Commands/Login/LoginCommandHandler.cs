@@ -81,6 +81,9 @@ namespace HelpDeskHQ.Core.Features.Security.Commands.Login
         {
             var jwtConfig = _config.GetSection(ConfigHelper.JwtSection).Get<Jwt>();
 
+            if (jwtConfig == null)
+                return null;
+
             var jwtIssuer = jwtConfig.Issuer;
             var jwtAudience = jwtConfig.Audience;
             var jwtKey = jwtConfig.SecreteKey;
